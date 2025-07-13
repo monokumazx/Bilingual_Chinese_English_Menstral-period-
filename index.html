@@ -53,6 +53,46 @@
             margin-top: -0.25rem; /* Adjust spacing */
             margin-bottom: 0.25rem;
         }
+
+        /* Custom styles for the definition popup */
+        .definition-popup {
+            transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none; /* Allow clicks to pass through when hidden */
+            position: absolute; /* Added position absolute */
+            top: calc(100% + 5px); /* Position below the trigger */
+            left: 0;
+            transform: translateY(5px); /* Slight initial offset for transition */
+            transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, transform 0.2s ease-in-out;
+        }
+
+        /* Show on hover for the parent group */
+        .group:hover .definition-popup {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto; /* Enable clicks when visible */
+            transform: translateY(0);
+        }
+
+        /* Show on click (active state) */
+        .definition-popup.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto; /* Enable clicks when active */
+            transform: translateY(0);
+        }
+
+        /* Arrow for the popup */
+        .definition-popup::before {
+            content: '';
+            position: absolute;
+            bottom: 100%; /* Position above the popup */
+            left: 15px; /* Adjust as needed to align with term */
+            border-width: 8px;
+            border-style: solid;
+            border-color: transparent transparent #2563eb transparent; /* Match bg-blue-700 */
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -122,33 +162,99 @@
             <!-- Category: 基本词汇 (Basic Terms) -->
             <h3 class="text-2xl font-semibold text-green-800 mb-3 mt-6">基本词汇 | Basic Terms</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-lg">
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="女性周期性子宫出血 / The periodic discharge from the uterus">生理期 / 月经</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="生理期 / 月经">
+                            生理期 / 月经
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">shēng lǐ qī / yuè jīng</p>
                     <p class="text-gray-600">Menstruation / Period</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="女性从月经第一天到下次月经第一天的周期 / The cycle from the first day of menstruation to the first day of the next period">月经周期</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="月经周期">
+                            月经周期
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">yuè jīng zhōu qī</p>
                     <p class="text-gray-600">Menstrual Cycle</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="月经期间从子宫排出的血液和组织 / Blood and tissue discharged from the uterus during menstruation">经血</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="经血">
+                            经血
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">jīng xuè</p>
                     <p class="text-gray-600">Menstrual Blood</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="女性的第一次月经 / A female's first menstruation">初潮</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="初潮">
+                            初潮
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">chū cháo</p>
                     <p class="text-gray-600">Menarche (First Period)</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="女性停止月经的自然生理阶段 / The natural physiological stage when a woman stops menstruating">更年期</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="更年期">
+                            更年期
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">gēng nián qī</p>
                     <p class="text-gray-600">Menopause</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="生理期相关的教育和信息 / Education and information related to menstruation">月经教育</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="月经教育">
+                            月经教育
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">yuè jīng jiào yù</p>
                     <p class="text-gray-600">Menstrual Education</p>
                 </div>
@@ -157,38 +263,115 @@
             <!-- Category: 生理现象与过程 (Physiological Phenomena & Processes) -->
             <h3 class="text-2xl font-semibold text-green-800 mb-3 mt-6">生理现象与过程 | Physiological Phenomena & Processes</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-lg">
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="卵巢释放成熟卵子的过程 / The process by which a mature egg is released from the ovary">排卵</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="排卵">
+                            排卵
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">pái luǎn</p>
                     <p class="text-gray-600">Ovulation</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="卵巢排出的女性生殖细胞 / The female reproductive cell released by the ovary">卵子</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="卵子">
+                            卵子
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">luǎn zǐ</p>
                     <p class="text-gray-600">Egg / Ovum</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="女性生殖器官，胎儿在此发育 / The female reproductive organ where a fetus develops">子宫</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="子宫">
+                            子宫
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">zǐ gōng</p>
                     <p class="text-gray-600">Uterus</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="女性生殖腺，产生卵子和激素 / Female gonads that produce eggs and hormones">卵巢</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="卵巢">
+                            卵巢
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">luǎn cháo</p>
                     <p class="text-gray-600">Ovaries</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="子宫内壁的组织，在月经期间脱落 / The tissue lining the inside of the uterus, which sheds during menstruation">子宫内膜</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="子宫内膜">
+                            子宫内膜
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">zǐ gōng nèi mó</p>
                     <p class="text-gray-600">Endometrium</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="排卵后卵泡在卵巢中形成的临时内分泌结构 / A temporary endocrine structure formed in the ovary after ovulation from the follicle">黄体</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="黄体">
+                            黄体
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">huáng tǐ</p>
                     <p class="text-gray-600">Corpus Luteum</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="排卵期间可能发生的腹部疼痛 / Abdominal pain that may occur during ovulation">经间痛</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="经间痛">
+                            经间痛
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">jīng jiān tòng</p>
                     <p class="text-gray-600">Mittelschmerz (Ovulation Pain)</p>
                 </div>
@@ -197,18 +380,51 @@
             <!-- Category: 激素 (Hormones) -->
             <h3 class="text-2xl font-semibold text-green-800 mb-3 mt-6">激素 | Hormones</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-lg">
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="调节身体功能的化学物质 / Chemical substances that regulate bodily functions">激素 / 荷尔蒙</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="激素 / 荷尔蒙">
+                            激素 / 荷尔蒙
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">jī sù / hé ěr méng</p>
                     <p class="text-gray-600">Hormones</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="黄体期主要激素，有助于维持子宫内膜 / The primary hormone during the luteal phase, which helps maintain the uterine lining">黄体酮</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="黄体酮">
+                            黄体酮
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">huáng tǐ tóng</p>
                     <p class="text-gray-600">Progesterone</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="卵泡期主要激素，促进子宫内膜增厚 / The primary hormone during the follicular phase, which promotes uterine lining thickening">雌激素</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="雌激素">
+                            雌激素
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">cí jī sù</p>
                     <p class="text-gray-600">Estrogen</p>
                 </div>
@@ -217,33 +433,99 @@
             <!-- Category: 卫生用品 (Hygiene Products) -->
             <h3 class="text-2xl font-semibold text-green-800 mb-3 mt-6">卫生用品 | Hygiene Products</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-lg">
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="用于吸收经血的一次性垫片 / Disposable pads used to absorb menstrual blood">卫生巾</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="卫生巾">
+                            卫生巾
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">wèi shēng jīn</p>
                     <p class="text-gray-600">Sanitary Pad / Maxi Pad</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="插入阴道内吸收经血的棉质产品 / A cotton product inserted into the vagina to absorb menstrual blood">卫生棉条</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="卫生棉条">
+                            卫生棉条
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">wèi shēng mián tiáo</p>
                     <p class="text-gray-600">Tampon</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="可重复使用的硅胶杯，收集经血 / A reusable silicone cup that collects menstrual blood">月经杯</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="月经杯">
+                            月经杯
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">yuè jīng bēi</p>
                     <p class="text-gray-600">Menstrual Cup</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="用于经期前后或分泌物较多时，比卫生巾薄 / A thinner pad used before/after periods or for light discharge, distinct from sanitary pads">护垫</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="护垫">
+                            护垫
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">hù diàn</p>
                     <p class="text-gray-600">Pantyliner</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="可清洗和重复使用的布质卫生巾 / Washable and reusable sanitary pads made of cloth">可重复使用卫生巾</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="可重复使用卫生巾">
+                            可重复使用卫生巾
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">kě chóng fù shǐ yòng wèi shēng jīn</p>
                     <p class="text-gray-600">Reusable Cloth Pad</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="可替代传统卫生用品的吸血内裤 / Absorbent underwear that can replace traditional sanitary products">经期卫生裤</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="经期卫生裤">
+                            经期卫生裤
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">jīng qī wèi shēng kù</p>
                     <p class="text-gray-600">Period Underwear</p>
                 </div>
@@ -252,53 +534,163 @@
             <!-- Category: 症状与异常 (Symptoms & Irregularities) -->
             <h3 class="text-2xl font-semibold text-green-800 mb-3 mt-6">症状与异常 | Symptoms & Irregularities</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-lg">
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="月经周期、持续时间或经量异常 / Abnormalities in menstrual cycle, duration, or flow volume">经期不调</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="经期不调">
+                            经期不调
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">jīng qī bù tiáo</p>
                     <p class="text-gray-600">Irregular Period</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="经血量异常大 / Abnormally heavy menstrual flow">月经过多</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="月经过多">
+                            月经过多
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">yuè jīng guò duō</p>
                     <p class="text-gray-600">Heavy Menstrual Bleeding / Menorrhagia</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="经血量异常少 / Abnormally light menstrual flow">月经过少</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="月经过少">
+                            月经过少
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">yuè jīng guò shǎo</p>
                     <p class="text-gray-600">Light Period / Hypomenorrhea</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="非月经期间的少量出血 / Small amount of bleeding outside of the menstrual period">点滴出血</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="点滴出血">
+                            点滴出血
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">diǎn dī chū xuè</p>
                     <p class="text-gray-600">Spotting</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="是指女性在月经期间经历的下腹部疼痛或痉挛性疼痛。/ Refers to the pain or cramping in the lower abdomen that women experience during menstruation.">痛经</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="痛经">
+                            痛经
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">tòng jīng</p>
                     <p class="text-gray-600">Menstrual Cramps / Dysmenorrhea</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="月经前出现的身体和情绪症状 / Physical and emotional symptoms that occur before menstruation">经前综合征 (PMS)</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="经前综合征 (PMS)">
+                            经前综合征 (PMS)
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">jīng qián zōng hé zhēng</p>
                     <p class="text-gray-600">Premenstrual Syndrome (PMS)</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="比经前综合征更严重的情绪和身体症状，严重影响日常生活 / A more severe form of PMS with significant emotional and physical symptoms that severely impact daily life">经前烦躁障碍</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="经前烦躁障碍">
+                            经前烦躁障碍
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">jīng qián fán zào zhàng ài</p>
                     <p class="text-gray-600">Premenstrual Dysphoric Disorder</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="女性没有月经的情况，分为原发性和继发性 / The absence of menstruation in a woman, categorized as primary or secondary">闭经</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="闭经">
+                            闭经
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">bì jīng</p>
                     <p class="text-gray-600">Amenorrhea</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="更年期常见的突然发热感 / Common sudden feelings of warmth during menopause">潮热</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="潮热">
+                            潮热
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">cháo rè</p>
                     <p class="text-gray-600">Hot Flashes / Hot Flushes</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="与荷尔蒙波动相关的情绪变化，如易怒、悲伤 / Mood changes related to hormone fluctuations, such as irritability or sadness">经期情绪变化</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="经期情绪变化">
+                            经期情绪变化
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">jīng qī qíng xù biàn huà</p>
                     <p class="text-gray-600">Mood Swings during Period</p>
                 </div>
@@ -307,13 +699,35 @@
             <!-- Category: 相关疾病 (Related Disorders) -->
             <h3 class="text-2xl font-semibold text-green-800 mb-3 mt-6">相关疾病 | Related Disorders</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-lg">
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="子宫内膜组织在子宫外生长的妇科疾病 / A gynecological condition where tissue similar to the uterine lining grows outside the uterus">子宫内膜异位症</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="子宫内膜异位症">
+                            子宫内膜异位症
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">zǐ gōng nèi mó yì wèi zhèng</p>
                     <p class="text-gray-600">Endometriosis</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="导致月经不规律、雄激素过高、卵巢多囊样改变的常见病因 / A common cause of irregular periods, characterized by excess androgens and polycystic ovaries">多囊卵巢综合征 (PCOS)</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="多囊卵巢综合征 (PCOS)">
+                            多囊卵巢综合征 (PCOS)
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">duō náng luǎn cháo zōng hé zhēng</p>
                     <p class="text-gray-600">Polycystic Ovary Syndrome (PCOS)</p>
                 </div>
@@ -322,43 +736,131 @@
             <!-- Category: 管理与社会议题 (Management & Social Issues) -->
             <h3 class="text-2xl font-semibold text-green-800 mb-3 mt-6">管理与社会议题 | Management & Social Issues</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-lg">
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="用于检测排卵时间的试纸 / Test strips used to detect the time of ovulation">排卵试纸</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="排卵试纸">
+                            排卵试纸
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">pái luǎn shì zhǐ</p>
                     <p class="text-gray-600">Ovulation Test Kit</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="用于记录和预测月经周期的手机应用程序 / Mobile applications used to record and predict menstrual cycles">经期追踪器 (App)</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="经期追踪器 (App)">
+                            经期追踪器 (App)
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">jīng qī zhuī zōng qì</p>
                     <p class="text-gray-600">Period Tracker (App)</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="缓解痛经的常用药物 / Common medications used to relieve menstrual pain">痛经药物</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="痛经药物">
+                            痛经药物
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">tòng jīng yào wù</p>
                     <p class="text-gray-600">Pain Reliever / Antispasmodic</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="生理期期间保持清洁和健康的实践，包括更换频率、清洁等 / Practices for maintaining cleanliness and health during menstruation, including frequency of changes, cleaning, etc.">经期保健</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="经期保健">
+                            经期保健
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">jīng qī bào jiàn</p>
                     <p class="text-gray-600">Menstrual Hygiene</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="社会文化中对月经的羞耻观念 / Sociocultural notions of shame surrounding menstruation">月经羞耻</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="月经羞耻">
+                            月经羞耻
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">yuè jīng xiū chǐ</p>
                     <p class="text-gray-600">Period Shame</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="允许女性在月经期间休假的政策 / A policy allowing women to take leave from work during menstruation">经期休假</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="经期休假">
+                            经期休假
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">jīng qī xiū jià</p>
                     <p class="text-gray-600">Menstrual Leave / Period Leave</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="因经济困难无法获得足够经期卫生用品的情况 / The inability to afford or access sufficient menstrual hygiene products due to financial constraints">月经贫困</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="月经贫困">
+                            月经贫困
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">yuè jīng pín kùn</p>
                     <p class="text-gray-600">Period Poverty</p>
                 </div>
-                <div class="language-pair">
-                    <p><strong class="text-green-800" title="更年期前的过渡阶段，常伴随月经变化和症状 / The transitional stage before menopause, often accompanied by changes in menstruation and symptoms">围绝经期</strong></p>
+                <div class="language-pair relative group">
+                    <p>
+                        <span class="text-green-800 cursor-pointer term-trigger"
+                              data-term-key="围绝经期">
+                            围绝经期
+                        </span>
+                    </p>
+                    <div class="definition-popup absolute bg-blue-700 text-white p-2 rounded-lg shadow-lg z-10"
+                         style="min-width: 200px; max-width: 300px;">
+                        <p class="text-sm font-semibold mb-1">定义 | Definition:</p>
+                        <p class="text-xs" data-lang="zh"></p>
+                        <p class="text-xs" data-lang="en"></p>
+                    </div>
                     <p class="pinyin">wéi jué jīng qī</p>
                     <p class="text-gray-600">Perimenopause</p>
                 </div>
@@ -594,7 +1096,7 @@
                     <h3 class="text-2xl font-semibold text-red-800 mb-3">常见迷思与真相</h3>
                     <ul class="list-disc list-inside text-gray-700 space-y-2">
                         <li>**迷思：** 月经是“不洁”的。</li>
-                        <li>**真相：** 月经是健康的自然生理过程，是子宫为怀孕做准备后未受孕的正常排出。</li>
+                        <li>**真相：：** 月经是健康的自然生理过程，是子宫为怀孕做准备后未受孕的正常排出。</li>
                         <li>**迷思：** 生理期女性不应参与某些活动（如烹饪、宗教仪式）。</li>
                         <li>**真相：** 这些都是文化习俗，没有科学依据。女性在生理期完全可以正常生活。</li>
                     </ul>
@@ -781,7 +1283,7 @@
                         <li>经血量异常多或持续时间过长。</li>
                         <li>剧烈疼痛，影响日常生活。</li>
                         <li>月经期间发烧或出现其他不寻常症状。</li>
-                        <li>初潮年龄过早（8岁前）或过晚（16岁后）。</li>
+                        <li>Menarche (first period) occurring too early (before age 8) or too late (after age 16).</li>
                     </ul>
                 </div>
                 <div>
@@ -833,6 +1335,232 @@
                 behavior: 'smooth'
             });
         }
+
+        // --- Interactive Terms Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const termTriggers = document.querySelectorAll('.term-trigger');
+            let activePopup = null; // To keep track of the currently active (clicked) popup
+
+            // Map to store terms and their definitions from the provided file
+            const termDefinitions = {
+                "生理期 / 月经": {
+                    "zh": "育龄女性未怀孕时，子宫内膜每月剥落并伴随血液经阴道排出的生理过程，通常持续3-7天，是月经周期的一部分。",
+                    "en": "The monthly process in which blood and tissue from the lining of the uterus (endometrium) are shed through the vagina, typically lasting 3-7 days. It occurs in non-pregnant females of reproductive age as part of the menstrual cycle."
+                },
+                "月经周期": {
+                    "zh": "育龄女性体内大约每月重复一次的荷尔蒙周期，为潜在怀孕做准备。包括月经期、卵泡期、排卵期和黄体期。平均时长28天，但存在个体差异。",
+                    "en": "The recurring, approximately monthly hormonal cycle in females of reproductive age, preparing the body for potential pregnancy. It includes the menstrual phase (period), follicular phase, ovulation, and luteal phase. The average length is 28 days but varies."
+                },
+                "经血": {
+                    "zh": "月经期间排出的液体，包含血液、剥落的子宫内膜组织、宫颈黏液和阴道分泌物。",
+                    "en": "The fluid discharged during menstruation, consisting of blood, tissue from the shed endometrium, cervical mucus, and vaginal secretions."
+                },
+                "初潮": {
+                    "zh": "女性一生中的第一次月经，标志着青春期的开始和生殖能力的启动。通常发生在10至15岁之间。",
+                    "en": "The first occurrence of menstruation in a female's life, marking the onset of puberty and reproductive capability. It usually occurs between ages 10 and 15."
+                },
+                "更年期": {
+                    "zh": "月经和生育能力的永久性结束，发生在女性最后一次月经后的12个月。通常发生在45至55岁之间，是衰老的自然过程。",
+                    "en": "The permanent end of menstruation and fertility, occurring 12 months after a woman's last menstrual period. It typically happens between ages 45 and 55 and is a natural part of aging."
+                },
+                "月经教育": {
+                    "zh": "提供关于月经、月经健康、卫生实践以及相关生物学和社会方面的信息和知识。",
+                    "en": "The provision of information and knowledge about menstruation, menstrual health, hygiene practices, and related biological and social aspects."
+                },
+                "排卵": {
+                    "zh": "月经周期中成熟卵子从卵巢释放到输卵管的过程，通常发生在28天周期的第14天左右。这是受孕期。",
+                    "en": "The process in the menstrual cycle where a mature egg (ovum) is released from an ovary into the fallopian tube, typically occurring around day 14 of a 28-day cycle. This is the fertile window."
+                },
+                "卵子": {
+                    "zh": "卵巢产生的雌性生殖细胞（配子）。如果被精子受精，可以发育成胚胎。",
+                    "en": "The female reproductive cell (gamete) produced by the ovaries. If fertilized by sperm, it can develop into an embryo."
+                },
+                "子宫": {
+                    "zh": "女性盆腔内的中空肌肉器官。是受精卵着床并在怀孕期间发育成胎儿的地方。其内膜（子宫内膜）在月经周期中增厚并剥落。",
+                    "en": "A hollow, muscular organ in the female pelvis. It is where a fertilized egg implants and develops into a fetus during pregnancy. Its lining (endometrium) thickens and sheds during the menstrual cycle."
+                },
+                "卵巢": {
+                    "zh": "位于子宫两侧的一对小腺体。负责产生卵子并分泌雌激素和孕激素。",
+                    "en": "A pair of small glands located on either side of the uterus. They produce eggs (ova) and secrete the hormones estrogen and progesterone."
+                },
+                "子宫内膜": {
+                    "zh": "子宫的内膜层。在荷尔蒙影响下每月增厚，为可能的怀孕做准备。如果未怀孕，则在月经期间剥落。",
+                    "en": "The inner lining of the uterus. It thickens each month under hormonal influence in preparation for a potential pregnancy. If pregnancy doesn't occur, it sheds during menstruation."
+                },
+                "黄体": {
+                    "zh": "排卵后由卵泡残余物在卵巢内形成的临时内分泌结构。分泌孕酮（和一些雌激素）以准备并维持子宫内膜，为可能的着床做准备。",
+                    "en": "A temporary endocrine structure formed in the ovary from the remnants of the follicle after ovulation. It secretes progesterone (and some estrogen) to prepare and maintain the uterine lining for potential implantation."
+                },
+                "经间痛": {
+                    "zh": "发生在排卵期（月经中期）左右的轻度至中度盆腔或腹部疼痛，通常位于一侧。可持续数分钟至数小时。",
+                    "en": "Mild to moderate pelvic or abdominal pain occurring around the time of ovulation (mid-cycle), typically on one side. It can last minutes to hours."
+                },
+                "激素 / 荷尔蒙": {
+                    "zh": "内分泌系统腺体产生的化学信使。它们通过血液传播，调节各种身体功能，包括生长、新陈代谢、情绪和生殖（如月经周期）。",
+                    "en": "Chemical messengers produced by glands in the endocrine system. They travel through the bloodstream to regulate various bodily functions, including growth, metabolism, mood, and reproduction (e.g., the menstrual cycle)."
+                },
+                "黄体酮": {
+                    "zh": "一种类固醇激素，主要由排卵后的黄体和怀孕期间的胎盘分泌。它准备并维持子宫内膜以支持怀孕，抑制子宫收缩，并支持早期妊娠。",
+                    "en": "A steroid hormone primarily secreted by the corpus luteum after ovulation and by the placenta during pregnancy. It prepares and maintains the endometrium for pregnancy, inhibits uterine contractions, and supports early pregnancy."
+                },
+                "雌激素": {
+                    "zh": "一组对女性生殖发育和功能至关重要的类固醇激素（主要是雌二醇）。主要由卵巢产生，调节月经周期、促进第二性征发育、增厚子宫内膜，并影响骨骼健康、胆固醇水平等。",
+                    "en": "A group of steroid hormones (primarily estradiol) crucial for female reproductive development and function. Produced mainly by the ovaries, it regulates the menstrual cycle, develops secondary sexual characteristics, thickens the endometrium, and affects bone health, cholesterol, etc."
+                },
+                "卫生巾": {
+                    "zh": "一种外用的吸水性垫片，穿在内裤内以吸收经血。一次性使用，有不同尺寸和吸水量。",
+                    "en": "An absorbent pad worn externally inside the underwear to absorb menstrual flow. Disposable and available in various sizes and absorbencies."
+                },
+                "卫生棉条": {
+                    "zh": "一种圆柱形吸水性装置，插入阴道内部以吸收经血。一次性使用，有不同吸水量。需要定期更换（每4-8小时）。",
+                    "en": "A cylindrical, absorbent device inserted into the vagina to absorb menstrual flow internally. Disposable and available in various absorbencies. Requires regular changing (every 4-8 hours)."
+                },
+                "月经杯": {
+                    "zh": "一种由医用硅胶、橡胶或乳胶制成的柔性钟形杯，插入阴道内收集（而非吸收）经血。可重复使用，每8-12小时取出、清洗并重新置入。",
+                    "en": "A flexible, bell-shaped cup made of medical-grade silicone, rubber, or latex that is inserted into the vagina to collect (rather than absorb) menstrual flow. Reusable, emptied, washed, and reinserted every 8-12 hours."
+                },
+                "护垫": {
+                    "zh": "一种薄而小的吸水性垫片，穿在内裤内，用于吸收分泌物、少量点滴出血，或作为卫生棉条/月经杯的备份。也用于日常清洁。",
+                    "en": "A thin, small, absorbent pad worn externally inside the underwear for light discharge, light spotting, or as backup for tampons/menstrual cups. Also used for daily freshness."
+                },
+                "可重复使用卫生巾": {
+                    "zh": "一种由可水洗布料（如棉、竹纤维、绒布）制成的吸水性月经垫。与一次性卫生巾一样外用，但可清洗并重复使用多次。",
+                    "en": "An absorbent menstrual pad made from washable fabric (e.g., cotton, bamboo, fleece). Worn externally like a disposable pad but washed and reused multiple times."
+                },
+                "经期卫生裤": {
+                    "zh": "内置吸水和防漏层的特殊内裤，旨在无需额外使用卫生巾或棉条即可吸收经血。可清洗并重复使用。",
+                    "en": "Underwear with built-in absorbent and leak-proof layers designed to absorb menstrual flow without needing a separate pad or tampon. Washed and reused."
+                },
+                "经期不调": {
+                    "zh": "月经周期持续地短于21天或长于35天，或周期时长、经期长度、经血量在不同周期间差异显著。",
+                    "en": "Menstrual cycles that consistently fall outside the typical range of 21-35 days in length, or periods that vary significantly in duration or flow from cycle to cycle."
+                },
+                "月经过多": {
+                    "zh": "月经失血量过大，足以干扰身体、社交、情感或日常生活质量。通常指连续数小时每小时浸透一片或多片卫生巾/棉条，排出大血块，或经期超过7天。",
+                    "en": "Menstrual blood loss that is excessive enough to interfere with physical, social, emotional, or material quality of life. Often involves soaking through one or more pads/tampons per hour for several consecutive hours, passing large clots, or periods lasting longer than 7 days."
+                },
+                "月经过少": {
+                    "zh": "月经出血量异常少，通常指整个周期总失血量少于30毫升或经期持续时间少于2天。",
+                    "en": "Unusually light menstrual bleeding, typically defined as a total blood loss of less than 30ml per cycle or periods lasting less than 2 days."
+                },
+                "点滴出血": {
+                    "zh": "在正常月经期之外发生的少量阴道出血。通常量极少，呈褐色或粉红色，无需使用卫生巾/棉条（护垫即可）。",
+                    "en": "Light vaginal bleeding that occurs outside of the regular menstrual period. It is usually minimal, brownish or pinkish in color, and doesn't require a pad/tampon (a pantyliner suffices)."
+                },
+                "痛经": {
+                    "zh": "月经前或月经期间发生的下腹部疼痛性痉挛。程度从轻微不适到严重影响日常活动的剧烈疼痛不等。原发性痛经很常见且无其他疾病关联；继发性痛经由潜在病症（如子宫内膜异位症）引起。",
+                    "en": "Painful cramps in the lower abdomen occurring before or during menstruation. Can range from mild discomfort to severe pain interfering with daily activities. Primary dysmenorrhea is common and not linked to other diseases; secondary dysmenorrhea is caused by an underlying condition (e.g., endometriosis)."
+                },
+                "经前综合征 (PMS)": {
+                    "zh": "在月经周期的黄体期（排卵后）出现并在月经开始后几天内缓解的一系列身体、情绪和行为症状（如腹胀、乳房胀痛、情绪波动、易怒、疲劳、食欲增加）的组合。",
+                    "en": "A combination of physical, emotional, and behavioral symptoms (e.g., bloating, breast tenderness, mood swings, irritability, fatigue, food cravings) that occur in the luteal phase (after ovulation) of the menstrual cycle and resolve within a few days after the period starts."
+                },
+                "经前烦躁障碍": {
+                    "zh": "一种严重的、有时会致残的经前综合征表现形式，其特征是在月经前一两周出现显著的情绪紊乱（如严重抑郁、焦虑、易怒、愤怒）和身体症状，明显干扰工作、社交活动或人际关系。",
+                    "en": "A severe, sometimes disabling extension of PMS characterized by significant mood disturbances (e.g., severe depression, anxiety, irritability, anger) and physical symptoms in the week or two before menstruation that markedly interfere with work, social activities, or relationships."
+                },
+                "闭经": {
+                    "zh": "没有月经。原发性闭经： 到15岁（发育正常）或乳房发育后5年内月经仍未初潮。继发性闭经： 既往月经规律的女性连续3个月以上无月经，或月经不规律的女性连续6个月无月经。",
+                    "en": "The absence of menstruation. Primary amenorrhea: Menstruation has not started by age 15 (with normal development) or within 5 years of breast development. Secondary amenorrhea: The absence of periods for 3 or more consecutive months in a woman who previously had regular cycles, or 6 months in a woman with irregular cycles."
+                },
+                "潮热": {
+                    "zh": "突然感到的强烈发热感，通常在面部、颈部和胸部最明显，有时伴有出汗、皮肤潮红和心跳加快。通常与围绝经期和绝经期的荷尔蒙波动有关。",
+                    "en": "A sudden feeling of intense warmth, often most intense over the face, neck, and chest, sometimes accompanied by sweating, flushing (reddening of the skin), and rapid heartbeat. Commonly associated with perimenopause and menopause due to hormonal fluctuations."
+                },
+                "经期情绪变化": {
+                    "zh": "与月经周期相关的情绪状态快速且常常不可预测的变化（如易怒、悲伤、焦虑、流泪），常见于月经来潮前几天（作为经前综合症/经前烦躁障碍的一部分）或月经期间。",
+                    "en": "Rapid and often unpredictable shifts in emotional state (e.g., irritability, sadness, anxiety, tearfulness) that occur in relation to the menstrual cycle, commonly in the days leading up to menstruation (as part of PMS/PMDD) or during the period itself."
+                },
+                "子宫内膜异位症": {
+                    "zh": "一种类似子宫内膜的组织生长在子宫腔外（如卵巢、输卵管、盆腔腹膜）的病症。这些异位组织对荷尔蒙有反应，每月也会剥落出血，导致炎症、剧烈疼痛（尤其在经期）、瘢痕组织（粘连）并可能导致不孕。",
+                    "en": "A condition where tissue similar to the endometrium grows outside the uterus (e.g., on ovaries, fallopian tubes, pelvic lining). This tissue responds to hormones, breaks down, and bleeds monthly, causing inflammation, severe pain (especially during periods), scar tissue (adhesions), and potentially infertility."
+                },
+                "多囊卵巢综合征 (PCOS)": {
+                    "zh": "一种常见的内分泌疾病，特征包括月经不规律或停经、雄激素水平过高（导致痤疮、多毛等症状）和多囊卵巢（超声可见多个小卵泡）。它是不孕的主要原因之一，并与胰岛素抵抗、体重增加以及糖尿病和心脏病风险增加相关。",
+                    "en": "A common hormonal disorder characterized by irregular or absent periods, excess androgen levels (leading to symptoms like acne, excess hair growth), and polycystic ovaries (many small follicles visible on ultrasound). It's a leading cause of infertility and is associated with insulin resistance, weight gain, and increased risk of diabetes and heart disease."
+                },
+                "排卵试纸": {
+                    "zh": "一种家用检测试剂，用于检测尿液中黄体生成素（LH）的激增（通常在排卵前24-36小时发生）。用于预测最佳受孕日或有时用于避孕。",
+                    "en": "A home test kit that detects the surge in Luteinizing Hormone (LH) in urine that occurs 24-36 hours before ovulation. Used to predict the most fertile days for conception or sometimes for avoiding pregnancy."
+                },
+                "经期追踪器 (App)": {
+                    "zh": "用于记录月经周期详情（开始/结束日期、流量、症状、情绪等）的应用程序（App）或工具，用于预测未来经期、识别排卵日以及监测周期规律性和健康状况。",
+                    "en": "An application (app) or tool used to record menstrual cycle details (start/end dates, flow, symptoms, mood, etc.) to predict future periods, identify ovulation, and monitor cycle regularity and health."
+                },
+                "痛经药物": {
+                    "zh": "用于缓解痛经的药物。常见类型包括非甾体抗炎药（NSAIDs，如布洛芬、萘普生），可减轻炎症和前列腺素作用；有时也使用解痉药来减轻肌肉痉挛。",
+                    "en": "Medications used to relieve menstrual cramps (dysmenorrhea). Common types include NSAIDs (Non-Steroidal Anti-Inflammatory Drugs like ibuprofen, naproxen) which reduce inflammation and prostaglandins, and sometimes antispasmodics to reduce muscle spasms."
+                },
+                "经期保健": {
+                    "zh": "使个体能够安全、舒适且有尊严地管理月经的实践和资源获取（清洁水、卫生设施、负担得起的经期用品、教育）。",
+                    "en": "Practices and access to resources (clean water, sanitation facilities, affordable menstrual products, education) that allow individuals to manage their menstruation safely, comfortably, and with dignity."
+                },
+                "月经羞耻": {
+                    "zh": "围绕月经的社会文化禁忌、尴尬、隐秘和负面态度，常常导致歧视、沉默以及缺乏公开讨论或教育。",
+                    "en": "The social and cultural taboo, embarrassment, secrecy, and negative attitudes surrounding menstruation, often leading to discrimination, silence, and lack of open discussion or education."
+                },
+                "经期休假": {
+                    "zh": "一种职场政策，允许个体因与月经周期相关的严重症状（如子宫内膜异位症或经前烦躁障碍引起的剧痛）而请带薪或无薪假。",
+                    "en": "A workplace policy allowing individuals to take paid or unpaid leave from work due to severe symptoms associated with their menstrual cycle (e.g., debilitating pain from conditions like endometriosis or PMDD)."
+                },
+                "月经贫困": {
+                    "zh": "由于经济困难或其他系统性障碍而无法获得经期用品、卫生设施、废弃物处理和教育。影响健康、教育和个人尊严。",
+                    "en": "The lack of access to menstrual products, sanitation facilities, waste management, and education due to financial constraints or other systemic barriers. It affects health, education, and dignity."
+                },
+                "围绝经期": {
+                    "zh": "绝经前的过渡阶段，通常始于最后一次月经前数年。以荷尔蒙波动为特征，导致月经不规律以及潮热、睡眠问题、情绪变化和阴道干涩等症状。绝经需在连续12个月无月经后才能确认。",
+                    "en": "The transitional phase leading up to menopause, typically starting several years before the final menstrual period. Characterized by hormonal fluctuations causing irregular periods and symptoms like hot flashes, sleep problems, mood changes, and vaginal dryness. Menopause is confirmed retrospectively after 12 consecutive months without a period."
+                }
+            };
+
+            termTriggers.forEach(trigger => {
+                const termText = trigger.textContent.trim(); // Get the text content of the span
+                const parentDiv = trigger.closest('.language-pair');
+                const definitionPopup = parentDiv.querySelector('.definition-popup'); // Ensure definitionPopup is always defined
+                const zhDefElement = definitionPopup.querySelector('[data-lang="zh"]');
+                const enDefElement = definitionPopup.querySelector('[data-lang="en"]');
+
+                const definition = termDefinitions[termText];
+
+                if (definition) {
+                    // Populate the definition popup with content from the map
+                    zhDefElement.textContent = definition.zh;
+                    enDefElement.textContent = definition.en;
+                } else {
+                    // Fallback if definition not found (shouldn't happen with correct data)
+                    zhDefElement.textContent = "定义未找到。";
+                    enDefElement.textContent = "Definition not found.";
+                    // Optionally hide the popup if no definition is available for it
+                    definitionPopup.classList.add('hidden');
+                }
+
+                // Handle click event to toggle visibility
+                trigger.addEventListener('click', (event) => {
+                    event.stopPropagation(); // Prevent click from bubbling up and closing other popups
+
+                    // Only toggle if a definition was found and populated
+                    if (definition) {
+                        if (activePopup && activePopup !== definitionPopup) {
+                            activePopup.classList.remove('active');
+                        }
+                        definitionPopup.classList.toggle('active');
+                        if (definitionPopup.classList.contains('active')) {
+                            activePopup = definitionPopup;
+                        } else {
+                            activePopup = null;
+                        }
+                    }
+                });
+            });
+
+            // Hide the active popup if clicking anywhere else on the document
+            document.addEventListener('click', (event) => {
+                if (activePopup && !activePopup.contains(event.target) && !event.target.classList.contains('term-trigger')) {
+                    activePopup.classList.remove('active');
+                    activePopup = null;
+                }
+            });
+        });
     </script>
 </body>
 </html>
