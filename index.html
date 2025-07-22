@@ -32,18 +32,18 @@
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background-color: #64748b; /* Slate-500 */
+            background-color: #475569; /* Slate-600 */
             color: white;
             padding: 0.75rem 1rem;
-            border-radius: 9999px; /* Fully rounded */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 600;
             display: none; /* Hidden by default */
-            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            transition: background-color 0.3s ease;
         }
         .scroll-to-top:hover {
-            background-color: #475569; /* Slate-600 */
+            background-color: #334155; /* Slate-700 */
         }
         /* Style for pinyin */
         .pinyin {
@@ -94,7 +94,7 @@
         }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="text-slate-800">
     <div class="bg-gray-100 text-gray-700 p-3 text-center text-sm rounded-b-lg shadow-md mb-4">
         <p><strong>请注意：我已尽力通过检查验证部分数据，但内容中仍可能存在不准确之处。</strong></p>
         <p><strong>Please note: I have done my best to verify some of the data through checks, but there may still be inaccuracies in the content.</strong></p>
@@ -925,7 +925,7 @@
             </p>
 
             <div class="flex justify-center items-center py-6 bg-purple-100 rounded-lg shadow-inner">
-                <svg id="menstrualCycleChart" width="300" height="300" viewBox="0 0 300 300" class="transform -rotate-90">
+                <svg id="menstrualCycleChart" width="300" height="300" viewBox="0 0 300 300">
                     <circle cx="150" cy="150" r="140" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
 
                     <circle cx="150" cy="150" r="120" fill="none" stroke="#cbd5e1" stroke-width="1"/>
@@ -962,7 +962,7 @@
                             <br><strong>Avoid over-cleaning:</strong> The vagina has self-cleaning abilities; over-cleaning can disrupt its natural flora.</li>
                         <li><strong>避免使用香味产品:</strong> 香味卫生巾或洗液可能引起刺激或过敏。
                             <br><strong>Avoid scented products:</strong> Scented pads or washes may cause irritation or allergies.</li>
-                        <li><strong>不要长时间使用同一卫生用品:</strong> 可能导致细菌滋生，增加感染风险。
+                        <li><strong>不要长时间使用同一卫生用品::</strong> 可能导致细菌滋生，增加感染风险。
                             <br><strong>Do not use the same product for too long:</strong> Can lead to bacterial growth and increase infection risk.</li>
                     </ul>
                 </div>
@@ -1305,6 +1305,12 @@
         </svg>
     </button>
 
+    <footer class="bg-pink-600 text-white py-4 mt-8 shadow-inner">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2023 生理期科普. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // FAQ Toggle
@@ -1355,33 +1361,36 @@
 
             const degreesPerDay = 360 / totalDays;
 
+            // Helper to convert polar to Cartesian coordinates for SVG (0 degrees at top, clockwise)
             function getCoordinates(angle, radius) {
-                const radians = (angle * Math.PI) / 180;
+                const radians = (angle - 90) * Math.PI / 180; // Adjust angle for 12 o'clock start
                 return {
                     x: centerX + radius * Math.cos(radians),
                     y: centerY + radius * Math.sin(radians)
                 };
             }
 
-            let currentAngle = -90; // Start at 12 o'clock
+            let currentAngle = 0; // Start at 0 degrees (which is 12 o'clock after adjustment in getCoordinates)
 
             phases.forEach(phase => {
                 const startAngle = currentAngle;
                 const endAngle = startAngle + (phase.duration * degreesPerDay);
 
                 // Draw arc for each phase
-                const startCoords = getCoordinates(startAngle, outerRadius);
-                const endCoords = getCoordinates(endAngle, outerRadius);
+                const startCoordsOuter = getCoordinates(startAngle, outerRadius);
+                const endCoordsOuter = getCoordinates(endAngle, outerRadius);
+                const startCoordsInner = getCoordinates(startAngle, innerRadius);
+                const endCoordsInner = getCoordinates(endAngle, innerRadius);
 
                 const largeArcFlag = phase.duration * degreesPerDay > 180 ? 1 : 0;
 
                 const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
                 path.setAttribute('d', `
-                    M ${getCoordinates(startAngle, innerRadius).x} ${getCoordinates(startAngle, innerRadius).y}
-                    L ${startCoords.x} ${startCoords.y}
-                    A ${outerRadius} ${outerRadius} 0 ${largeArcFlag} 1 ${endCoords.x} ${endCoords.y}
-                    L ${getCoordinates(endAngle, innerRadius).x} ${getCoordinates(endAngle, innerRadius).y}
-                    A ${innerRadius} ${innerRadius} 0 ${largeArcFlag} 0 ${getCoordinates(startAngle, innerRadius).x} ${getCoordinates(startAngle, innerRadius).y}
+                    M ${startCoordsInner.x} ${startCoordsInner.y}
+                    L ${startCoordsOuter.x} ${startCoordsOuter.y}
+                    A ${outerRadius} ${outerRadius} 0 ${largeArcFlag} 1 ${endCoordsOuter.x} ${endCoordsOuter.y}
+                    L ${endCoordsInner.x} ${endCoordsInner.y}
+                    A ${innerRadius} ${innerRadius} 0 ${largeArcFlag} 0 ${startCoordsInner.x} ${startCoordsInner.y}
                 `);
                 path.setAttribute('fill', phase.color);
                 path.setAttribute('stroke', '#fff'); // White border between phases
@@ -1407,7 +1416,7 @@
 
             // Add day numbers around the outer circle
             for (let i = 1; i <= totalDays; i++) {
-                const angle = -90 + (i * degreesPerDay) - (degreesPerDay / 2); // Center of each day's arc
+                const angle = (i - 0.5) * degreesPerDay; // Center of each day's arc
                 const coords = getCoordinates(angle, dayNumberRadius);
 
                 const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
